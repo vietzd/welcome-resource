@@ -1,0 +1,22 @@
+# Every template YAML file must begin with a `spec` and `templates`, without which your template won't compile.
+spec:
+  templates:
+
+  # Definition for the "welcome-to-orquestra" template
+  - name: welcome-to-orquestra
+    parent: generic-task
+    inputs:
+      artifacts:
+      - name: main-script
+        path: /app/main.py  # The `path` value for artifacts is where they are placed and they must be under the `app` directory
+        raw:
+          data: |
+            from orquestra import welcome
+            welcome()
+      parameters:
+      - name: command
+        value: python3 main.py
+    outputs:
+      artifacts:
+      - name: welcome
+        path: /app/welcome.json
